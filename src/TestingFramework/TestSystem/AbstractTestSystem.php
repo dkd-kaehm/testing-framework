@@ -547,6 +547,10 @@ abstract class AbstractTestSystem
         $originalConfigurationArray = [];
 
         $databaseName = trim(getenv('typo3DatabaseName'));
+        if (getenv('TEST_TOKEN') !== false) {  // Using paratest
+            $testToken = getenv('TEST_TOKEN');
+            $databaseName .= '_' . $testToken;
+        }
         $databaseHost = trim(getenv('typo3DatabaseHost'));
         $databaseUsername = trim(getenv('typo3DatabaseUsername'));
         $databasePassword = getenv('typo3DatabasePassword');
